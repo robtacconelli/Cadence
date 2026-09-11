@@ -1,0 +1,9 @@
+{
+ "gpu_vs_cpu_fp32": {
+  "identical": false,
+  "max": 0.00390625
+ },
+ "cpu64_vs_cpu32": null,
+ "desync_prob_per_sample": 6.961217602431074e-06,
+ "expected_samples_to_desync": 143653.0298450617
+}

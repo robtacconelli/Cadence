@@ -1,0 +1,9 @@
+{
+ "A_repeat_identical": true,
+ "B_batch1_vs_batch8_identical": false,
+ "B_maxdiff": 0.00390625,
+ "C_reorder_identical": true,
+ "C_maxdiff": 0.0,
+ "D_batch8_vs_9_identical": false,
+ "D_maxdiff": 0.0078125
+}

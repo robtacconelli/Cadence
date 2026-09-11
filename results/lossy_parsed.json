@@ -1,0 +1,770 @@
+{
+ "ecg_like|0.001|1": {
+  "tfm": 7.056,
+  "zero": 1.7,
+  "lpc": 8.016,
+  "lpczero": 0.8,
+  "gain": 12.0,
+  "vps": 46
+ },
+ "sparse_spiky|0.001|1": {
+  "tfm": 6.391,
+  "zero": 2.9,
+  "lpc": 7.116,
+  "lpczero": 1.6,
+  "gain": 10.2,
+  "vps": 46
+ },
+ "seasonal_metric|0.001|1": {
+  "tfm": 7.725,
+  "zero": 0.7,
+  "lpc": 7.826,
+  "lpczero": 0.8,
+  "gain": 1.3,
+  "vps": 46
+ },
+ "lorenz_chaotic|0.001|1": {
+  "tfm": 3.754,
+  "zero": 11.2,
+  "lpc": 2.811,
+  "lpczero": 25.5,
+  "gain": -33.6,
+  "vps": 46
+ },
+ "wikihr_en|0.001|1": {
+  "tfm": 7.363,
+  "zero": 1.4,
+  "lpc": 7.983,
+  "lpczero": 1.0,
+  "gain": 7.8,
+  "vps": 46
+ },
+ "wikihr_de|0.001|1": {
+  "tfm": 7.015,
+  "zero": 2.3,
+  "lpc": 7.661,
+  "lpczero": 1.2,
+  "gain": 8.4,
+  "vps": 46
+ },
+ "ecg_like|0.001|8": {
+  "tfm": 7.648,
+  "zero": 2.0,
+  "lpc": 8.016,
+  "lpczero": 0.8,
+  "gain": 4.6,
+  "vps": 370
+ },
+ "sparse_spiky|0.001|8": {
+  "tfm": 6.879,
+  "zero": 2.1,
+  "lpc": 7.116,
+  "lpczero": 1.6,
+  "gain": 3.3,
+  "vps": 370
+ },
+ "seasonal_metric|0.001|8": {
+  "tfm": 7.729,
+  "zero": 0.8,
+  "lpc": 7.826,
+  "lpczero": 0.8,
+  "gain": 1.2,
+  "vps": 370
+ },
+ "lorenz_chaotic|0.001|8": {
+  "tfm": 5.403,
+  "zero": 6.1,
+  "lpc": 2.811,
+  "lpczero": 25.5,
+  "gain": -92.2,
+  "vps": 370
+ },
+ "wikihr_en|0.001|8": {
+  "tfm": 7.912,
+  "zero": 1.0,
+  "lpc": 7.983,
+  "lpczero": 1.0,
+  "gain": 0.9,
+  "vps": 370
+ },
+ "wikihr_de|0.001|8": {
+  "tfm": 7.605,
+  "zero": 1.8,
+  "lpc": 7.661,
+  "lpczero": 1.2,
+  "gain": 0.7,
+  "vps": 370
+ },
+ "ecg_like|0.001|32": {
+  "tfm": 8.355,
+  "zero": 1.4,
+  "lpc": 8.016,
+  "lpczero": 0.8,
+  "gain": -4.2,
+  "vps": 1481
+ },
+ "sparse_spiky|0.001|32": {
+  "tfm": 7.353,
+  "zero": 2.7,
+  "lpc": 7.116,
+  "lpczero": 1.6,
+  "gain": -3.3,
+  "vps": 1481
+ },
+ "seasonal_metric|0.001|32": {
+  "tfm": 7.785,
+  "zero": 0.9,
+  "lpc": 7.826,
+  "lpczero": 0.8,
+  "gain": 0.5,
+  "vps": 1481
+ },
+ "lorenz_chaotic|0.001|32": {
+  "tfm": 8.39,
+  "zero": 2.4,
+  "lpc": 2.811,
+  "lpczero": 25.5,
+  "gain": -198.5,
+  "vps": 1481
+ },
+ "wikihr_en|0.001|32": {
+  "tfm": 8.129,
+  "zero": 0.6,
+  "lpc": 7.983,
+  "lpczero": 1.0,
+  "gain": -1.8,
+  "vps": 1481
+ },
+ "wikihr_de|0.001|32": {
+  "tfm": 7.881,
+  "zero": 1.5,
+  "lpc": 7.661,
+  "lpczero": 1.2,
+  "gain": -2.9,
+  "vps": 1481
+ },
+ "ecg_like|0.001|64": {
+  "tfm": 8.616,
+  "zero": 1.0,
+  "lpc": 8.016,
+  "lpczero": 0.8,
+  "gain": -7.5,
+  "vps": 2967
+ },
+ "sparse_spiky|0.001|64": {
+  "tfm": 8.033,
+  "zero": 1.9,
+  "lpc": 7.116,
+  "lpczero": 1.6,
+  "gain": -12.9,
+  "vps": 2967
+ },
+ "seasonal_metric|0.001|64": {
+  "tfm": 7.897,
+  "zero": 0.7,
+  "lpc": 7.826,
+  "lpczero": 0.8,
+  "gain": -0.9,
+  "vps": 2967
+ },
+ "lorenz_chaotic|0.001|64": {
+  "tfm": 9.283,
+  "zero": 1.4,
+  "lpc": 2.811,
+  "lpczero": 25.5,
+  "gain": -230.2,
+  "vps": 2967
+ },
+ "wikihr_en|0.001|64": {
+  "tfm": 8.242,
+  "zero": 0.5,
+  "lpc": 7.983,
+  "lpczero": 1.0,
+  "gain": -3.3,
+  "vps": 2967
+ },
+ "wikihr_de|0.001|64": {
+  "tfm": 8.037,
+  "zero": 1.2,
+  "lpc": 7.661,
+  "lpczero": 1.2,
+  "gain": -4.9,
+  "vps": 2967
+ },
+ "ecg_like|0.01|1": {
+  "tfm": 3.837,
+  "zero": 14.9,
+  "lpc": 4.761,
+  "lpczero": 7.5,
+  "gain": 19.4,
+  "vps": 46
+ },
+ "sparse_spiky|0.01|1": {
+  "tfm": 3.088,
+  "zero": 27.9,
+  "lpc": 3.813,
+  "lpczero": 17.5,
+  "gain": 19.0,
+  "vps": 46
+ },
+ "seasonal_metric|0.01|1": {
+  "tfm": 4.384,
+  "zero": 9.1,
+  "lpc": 4.464,
+  "lpczero": 7.5,
+  "gain": 1.8,
+  "vps": 46
+ },
+ "lorenz_chaotic|0.01|1": {
+  "tfm": 1.365,
+  "zero": 64.8,
+  "lpc": 2.866,
+  "lpczero": 23.7,
+  "gain": 52.4,
+  "vps": 46
+ },
+ "wikihr_en|0.01|1": {
+  "tfm": 4.054,
+  "zero": 14.7,
+  "lpc": 4.663,
+  "lpczero": 8.6,
+  "gain": 13.1,
+  "vps": 46
+ },
+ "wikihr_de|0.01|1": {
+  "tfm": 3.705,
+  "zero": 19.6,
+  "lpc": 4.344,
+  "lpczero": 13.1,
+  "gain": 14.7,
+  "vps": 46
+ },
+ "ecg_like|0.01|8": {
+  "tfm": 4.428,
+  "zero": 14.1,
+  "lpc": 4.761,
+  "lpczero": 7.5,
+  "gain": 7.0,
+  "vps": 370
+ },
+ "sparse_spiky|0.01|8": {
+  "tfm": 3.584,
+  "zero": 22.9,
+  "lpc": 3.813,
+  "lpczero": 17.5,
+  "gain": 6.0,
+  "vps": 370
+ },
+ "seasonal_metric|0.01|8": {
+  "tfm": 4.389,
+  "zero": 8.3,
+  "lpc": 4.464,
+  "lpczero": 7.5,
+  "gain": 1.7,
+  "vps": 370
+ },
+ "lorenz_chaotic|0.01|8": {
+  "tfm": 3.021,
+  "zero": 32.0,
+  "lpc": 2.866,
+  "lpczero": 23.7,
+  "gain": -5.4,
+  "vps": 370
+ },
+ "wikihr_en|0.01|8": {
+  "tfm": 4.594,
+  "zero": 8.4,
+  "lpc": 4.663,
+  "lpczero": 8.6,
+  "gain": 1.5,
+  "vps": 370
+ },
+ "wikihr_de|0.01|8": {
+  "tfm": 4.302,
+  "zero": 15.3,
+  "lpc": 4.344,
+  "lpczero": 13.1,
+  "gain": 1.0,
+  "vps": 370
+ },
+ "ecg_like|0.01|32": {
+  "tfm": 5.121,
+  "zero": 9.9,
+  "lpc": 4.761,
+  "lpczero": 7.5,
+  "gain": -7.6,
+  "vps": 1483
+ },
+ "sparse_spiky|0.01|32": {
+  "tfm": 4.054,
+  "zero": 22.6,
+  "lpc": 3.813,
+  "lpczero": 17.5,
+  "gain": -6.3,
+  "vps": 1483
+ },
+ "seasonal_metric|0.01|32": {
+  "tfm": 4.435,
+  "zero": 8.6,
+  "lpc": 4.464,
+  "lpczero": 7.5,
+  "gain": 0.6,
+  "vps": 1483
+ },
+ "lorenz_chaotic|0.01|32": {
+  "tfm": 5.291,
+  "zero": 10.9,
+  "lpc": 2.866,
+  "lpczero": 23.7,
+  "gain": -84.6,
+  "vps": 1483
+ },
+ "wikihr_en|0.01|32": {
+  "tfm": 4.808,
+  "zero": 7.6,
+  "lpc": 4.663,
+  "lpczero": 8.6,
+  "gain": -3.1,
+  "vps": 1483
+ },
+ "wikihr_de|0.01|32": {
+  "tfm": 4.582,
+  "zero": 11.6,
+  "lpc": 4.344,
+  "lpczero": 13.1,
+  "gain": -5.5,
+  "vps": 1483
+ },
+ "ecg_like|0.01|64": {
+  "tfm": 5.394,
+  "zero": 8.0,
+  "lpc": 4.761,
+  "lpczero": 7.5,
+  "gain": -13.3,
+  "vps": 2955
+ },
+ "sparse_spiky|0.01|64": {
+  "tfm": 4.712,
+  "zero": 18.2,
+  "lpc": 3.813,
+  "lpczero": 17.5,
+  "gain": -23.6,
+  "vps": 2955
+ },
+ "seasonal_metric|0.01|64": {
+  "tfm": 4.536,
+  "zero": 8.2,
+  "lpc": 4.464,
+  "lpczero": 7.5,
+  "gain": -1.6,
+  "vps": 2955
+ },
+ "lorenz_chaotic|0.01|64": {
+  "tfm": 6.182,
+  "zero": 6.9,
+  "lpc": 2.866,
+  "lpczero": 23.7,
+  "gain": -115.7,
+  "vps": 2955
+ },
+ "wikihr_en|0.01|64": {
+  "tfm": 4.923,
+  "zero": 7.1,
+  "lpc": 4.663,
+  "lpczero": 8.6,
+  "gain": -5.6,
+  "vps": 2955
+ },
+ "wikihr_de|0.01|64": {
+  "tfm": 4.725,
+  "zero": 11.4,
+  "lpc": 4.344,
+  "lpczero": 13.1,
+  "gain": -8.8,
+  "vps": 2955
+ },
+ "ecg_like|0.05|1": {
+  "tfm": 1.755,
+  "zero": 62.2,
+  "lpc": 2.728,
+  "lpczero": 26.4,
+  "gain": 35.7,
+  "vps": 46
+ },
+ "sparse_spiky|0.05|1": {
+  "tfm": 1.178,
+  "zero": 79.9,
+  "lpc": 1.81,
+  "lpczero": 58.0,
+  "gain": 34.9,
+  "vps": 46
+ },
+ "seasonal_metric|0.05|1": {
+  "tfm": 2.174,
+  "zero": 39.1,
+  "lpc": 2.228,
+  "lpczero": 38.1,
+  "gain": 2.4,
+  "vps": 46
+ },
+ "lorenz_chaotic|0.05|1": {
+  "tfm": 0.814,
+  "zero": 83.8,
+  "lpc": 2.852,
+  "lpczero": 23.9,
+  "gain": 71.4,
+  "vps": 46
+ },
+ "wikihr_en|0.05|1": {
+  "tfm": 1.947,
+  "zero": 53.1,
+  "lpc": 2.42,
+  "lpczero": 39.2,
+  "gain": 19.5,
+  "vps": 46
+ },
+ "wikihr_de|0.05|1": {
+  "tfm": 1.722,
+  "zero": 59.7,
+  "lpc": 2.221,
+  "lpczero": 45.1,
+  "gain": 22.5,
+  "vps": 46
+ },
+ "ecg_like|0.05|8": {
+  "tfm": 2.266,
+  "zero": 54.5,
+  "lpc": 2.728,
+  "lpczero": 26.4,
+  "gain": 16.9,
+  "vps": 369
+ },
+ "sparse_spiky|0.05|8": {
+  "tfm": 1.488,
+  "zero": 76.7,
+  "lpc": 1.81,
+  "lpczero": 58.0,
+  "gain": 17.8,
+  "vps": 369
+ },
+ "seasonal_metric|0.05|8": {
+  "tfm": 2.163,
+  "zero": 39.7,
+  "lpc": 2.228,
+  "lpczero": 38.1,
+  "gain": 2.9,
+  "vps": 369
+ },
+ "lorenz_chaotic|0.05|8": {
+  "tfm": 2.099,
+  "zero": 46.7,
+  "lpc": 2.852,
+  "lpczero": 23.9,
+  "gain": 26.4,
+  "vps": 369
+ },
+ "wikihr_en|0.05|8": {
+  "tfm": 2.381,
+  "zero": 40.8,
+  "lpc": 2.42,
+  "lpczero": 39.2,
+  "gain": 1.6,
+  "vps": 369
+ },
+ "wikihr_de|0.05|8": {
+  "tfm": 2.099,
+  "zero": 51.8,
+  "lpc": 2.221,
+  "lpczero": 45.1,
+  "gain": 5.5,
+  "vps": 369
+ },
+ "ecg_like|0.05|32": {
+  "tfm": 2.892,
+  "zero": 42.7,
+  "lpc": 2.728,
+  "lpczero": 26.4,
+  "gain": -6.0,
+  "vps": 1482
+ },
+ "sparse_spiky|0.05|32": {
+  "tfm": 2.083,
+  "zero": 66.8,
+  "lpc": 1.81,
+  "lpczero": 58.0,
+  "gain": -15.1,
+  "vps": 1482
+ },
+ "seasonal_metric|0.05|32": {
+  "tfm": 2.206,
+  "zero": 38.2,
+  "lpc": 2.228,
+  "lpczero": 38.1,
+  "gain": 1.0,
+  "vps": 1482
+ },
+ "lorenz_chaotic|0.05|32": {
+  "tfm": 3.79,
+  "zero": 21.2,
+  "lpc": 2.852,
+  "lpczero": 23.9,
+  "gain": -32.9,
+  "vps": 1482
+ },
+ "wikihr_en|0.05|32": {
+  "tfm": 2.548,
+  "zero": 35.6,
+  "lpc": 2.42,
+  "lpczero": 39.2,
+  "gain": -5.3,
+  "vps": 1482
+ },
+ "wikihr_de|0.05|32": {
+  "tfm": 2.354,
+  "zero": 45.5,
+  "lpc": 2.221,
+  "lpczero": 45.1,
+  "gain": -6.0,
+  "vps": 1482
+ },
+ "ecg_like|0.05|64": {
+  "tfm": 3.193,
+  "zero": 35.1,
+  "lpc": 2.728,
+  "lpczero": 26.4,
+  "gain": -17.0,
+  "vps": 2963
+ },
+ "sparse_spiky|0.05|64": {
+  "tfm": 2.666,
+  "zero": 52.1,
+  "lpc": 1.81,
+  "lpczero": 58.0,
+  "gain": -47.3,
+  "vps": 2963
+ },
+ "seasonal_metric|0.05|64": {
+  "tfm": 2.287,
+  "zero": 36.5,
+  "lpc": 2.228,
+  "lpczero": 38.1,
+  "gain": -2.7,
+  "vps": 2963
+ },
+ "lorenz_chaotic|0.05|64": {
+  "tfm": 4.103,
+  "zero": 16.5,
+  "lpc": 2.852,
+  "lpczero": 23.9,
+  "gain": -43.9,
+  "vps": 2963
+ },
+ "wikihr_en|0.05|64": {
+  "tfm": 2.651,
+  "zero": 31.7,
+  "lpc": 2.42,
+  "lpczero": 39.2,
+  "gain": -9.5,
+  "vps": 2963
+ },
+ "wikihr_de|0.05|64": {
+  "tfm": 2.486,
+  "zero": 41.2,
+  "lpc": 2.221,
+  "lpczero": 45.1,
+  "gain": -12.0,
+  "vps": 2963
+ },
+ "ecg_like|0.2|1": {
+  "tfm": 0.917,
+  "zero": 82.8,
+  "lpc": 1.881,
+  "lpczero": 47.8,
+  "gain": 51.3,
+  "vps": 46
+ },
+ "sparse_spiky|0.2|1": {
+  "tfm": 0.613,
+  "zero": 93.0,
+  "lpc": 0.727,
+  "lpczero": 89.9,
+  "gain": 15.7,
+  "vps": 46
+ },
+ "seasonal_metric|0.2|1": {
+  "tfm": 0.644,
+  "zero": 88.5,
+  "lpc": 0.493,
+  "lpczero": 92.7,
+  "gain": -30.6,
+  "vps": 46
+ },
+ "lorenz_chaotic|0.2|1": {
+  "tfm": 0.566,
+  "zero": 90.5,
+  "lpc": 2.853,
+  "lpczero": 25.4,
+  "gain": 80.2,
+  "vps": 46
+ },
+ "wikihr_en|0.2|1": {
+  "tfm": 0.61,
+  "zero": 90.3,
+  "lpc": 0.944,
+  "lpczero": 81.4,
+  "gain": 35.4,
+  "vps": 46
+ },
+ "wikihr_de|0.2|1": {
+  "tfm": 0.548,
+  "zero": 91.3,
+  "lpc": 0.967,
+  "lpczero": 80.4,
+  "gain": 43.3,
+  "vps": 46
+ },
+ "ecg_like|0.2|8": {
+  "tfm": 1.295,
+  "zero": 74.5,
+  "lpc": 1.881,
+  "lpczero": 47.8,
+  "gain": 31.2,
+  "vps": 371
+ },
+ "sparse_spiky|0.2|8": {
+  "tfm": 0.779,
+  "zero": 92.1,
+  "lpc": 0.727,
+  "lpczero": 89.9,
+  "gain": -7.2,
+  "vps": 371
+ },
+ "seasonal_metric|0.2|8": {
+  "tfm": 0.689,
+  "zero": 87.3,
+  "lpc": 0.493,
+  "lpczero": 92.7,
+  "gain": -39.8,
+  "vps": 371
+ },
+ "lorenz_chaotic|0.2|8": {
+  "tfm": 1.353,
+  "zero": 66.1,
+  "lpc": 2.853,
+  "lpczero": 25.4,
+  "gain": 52.6,
+  "vps": 371
+ },
+ "wikihr_en|0.2|8": {
+  "tfm": 0.864,
+  "zero": 83.4,
+  "lpc": 0.944,
+  "lpczero": 81.4,
+  "gain": 8.4,
+  "vps": 371
+ },
+ "wikihr_de|0.2|8": {
+  "tfm": 0.623,
+  "zero": 89.1,
+  "lpc": 0.967,
+  "lpczero": 80.4,
+  "gain": 35.6,
+  "vps": 371
+ },
+ "ecg_like|0.2|32": {
+  "tfm": 1.715,
+  "zero": 61.9,
+  "lpc": 1.881,
+  "lpczero": 47.8,
+  "gain": 8.8,
+  "vps": 1483
+ },
+ "sparse_spiky|0.2|32": {
+  "tfm": 1.237,
+  "zero": 79.7,
+  "lpc": 0.727,
+  "lpczero": 89.9,
+  "gain": -70.2,
+  "vps": 1483
+ },
+ "seasonal_metric|0.2|32": {
+  "tfm": 0.69,
+  "zero": 87.4,
+  "lpc": 0.493,
+  "lpczero": 92.7,
+  "gain": -39.9,
+  "vps": 1483
+ },
+ "lorenz_chaotic|0.2|32": {
+  "tfm": 2.336,
+  "zero": 35.8,
+  "lpc": 2.853,
+  "lpczero": 25.4,
+  "gain": 18.1,
+  "vps": 1483
+ },
+ "wikihr_en|0.2|32": {
+  "tfm": 0.938,
+  "zero": 81.9,
+  "lpc": 0.944,
+  "lpczero": 81.4,
+  "gain": 0.7,
+  "vps": 1483
+ },
+ "wikihr_de|0.2|32": {
+  "tfm": 0.838,
+  "zero": 83.1,
+  "lpc": 0.967,
+  "lpczero": 80.4,
+  "gain": 13.3,
+  "vps": 1483
+ },
+ "ecg_like|0.2|64": {
+  "tfm": 1.876,
+  "zero": 54.9,
+  "lpc": 1.881,
+  "lpczero": 47.8,
+  "gain": 0.3,
+  "vps": 2979
+ },
+ "sparse_spiky|0.2|64": {
+  "tfm": 1.537,
+  "zero": 71.0,
+  "lpc": 0.727,
+  "lpczero": 89.9,
+  "gain": -111.5,
+  "vps": 2979
+ },
+ "seasonal_metric|0.2|64": {
+  "tfm": 0.873,
+  "zero": 81.5,
+  "lpc": 0.493,
+  "lpczero": 92.7,
+  "gain": -77.2,
+  "vps": 2979
+ },
+ "lorenz_chaotic|0.2|64": {
+  "tfm": 2.496,
+  "zero": 33.6,
+  "lpc": 2.853,
+  "lpczero": 25.4,
+  "gain": 12.5,
+  "vps": 2979
+ },
+ "wikihr_en|0.2|64": {
+  "tfm": 1.044,
+  "zero": 78.7,
+  "lpc": 0.944,
+  "lpczero": 81.4,
+  "gain": -10.5,
+  "vps": 2979
+ },
+ "wikihr_de|0.2|64": {
+  "tfm": 0.819,
+  "zero": 83.9,
+  "lpc": 0.967,
+  "lpczero": 80.4,
+  "gain": 15.3,
+  "vps": 2979
+ }
+}

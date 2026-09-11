@@ -1,0 +1,7 @@
+{
+ "default": false,
+ "no_tf32": false,
+ "no_sdpa": false,
+ "no_sdpa_det": false,
+ "math_backend": false
+}
