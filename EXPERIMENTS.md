@@ -1,0 +1,305 @@
+# Experiment registry
+
+_generated 2026-09-05_
+
+**Methodological lesson:** Every idealized or projected number in this investigation came in HIGH when measured as real bytes end-to-end. Report real bytes; treat ideal codelengths as upper bounds.
+
+## Runs
+
+| id | name | kind | status | headline |
+|---|---|---|---|---|
+| E01 | TimesFM-3.0 architecture audit | INFRA | **CONFIRMED** | 9 quantiles (0. |
+| E02 | Synthetic corpus + controls | INFRA | **CONFIRMED** | controls behave correctly; iid_noise floor reproduced exactly. |
+| E03 | Real corpus: Wikimedia hourly pageviews | INFRA | **CONFIRMED** | CONTAMINATION RISK: TimesFM pretrained on Wikipedia pageviews (to Nov 2023). |
+| E04 | Real corpus: NAB operational | INFRA | **CONFIRMED** | 8 usable at ctx=512,N=2048. |
+| E05 | Real corpus: EIA-930 grid load | INFRA | **CONFIRMED** | 49 usable; SEC excluded as corrupt (3/4343 sentinel values ~-4. |
+| E06 | Real corpus: MTA subway ridership | INFRA | **CONFIRMED** | 50 usable. |
+| E07 | Classical baseline suite | INFRA | **CONFIRMED** | xz is a weak bar on numeric arrays; LPC+adaptive-Laplace is the real one. |
+| E08 | SZ3 built from source + ZFP | INFRA | **CONFIRMED** | working; SZ3 has ~500 B container overhead (dominates below N~4k). |
+| E10 | Lossless viability, stride 64 | EXPERIMENT | **CONFIRMED** | model far worse than classical; horizon decay dominates (|r| 58. |
+| E11 | Calibration diagnostic | EXPERIMENT | **CONFIRMED** | quantiles well-calibrated (ratio 0. |
+| E12 | Lossless viability, stride 1 + recalibration + stacking | EXPERIMENT | **RETRACTED** | apparent gains, but confounded by density-family mismatch (see E13). |
+| E13 | Fairness fix: identical residual coder | EXPERIMENT | **CONFIRMED** | VALIDATION: iid_noise reads 12. |
+| E14 | Lossless verdict | EXPERIMENT | **CONFIRMED** | median +0. |
+| E15 | Cross-channel via past_future_covariates | EXPERIMENT | **NEGATIVE** | NO EFFECT: 19. |
+| E20 | Error-bounded lossy sweep (closed loop) | EXPERIMENT | **RETRACTED** | large apparent gains (lorenz +71. |
+| E21 | Predictor noise-gain measurement | EXPERIMENT | **CONFIRMED** | TimesFM G=0. |
+| E22 | SZ3-class predictor family | EXPERIMENT | **CONFIRMED** | SZ3's multilevel interpolation is contractive BY CONSTRUCTION (G=0. |
+| E23 | Head-to-head vs SZ3-class, matched windows | EXPERIMENT | **CONFIRMED** | median +6. |
+| E24 | TimesFM as interpolator (coarse grid as covariate) | EXPERIMENT | **NEGATIVE** | FAILED in every configuration: -0. |
+| E25 | Definitive benchmark, real bytes, N=8192 | EXPERIMENT | **CONFIRMED** | vs best-of-6 classical: median +4. |
+| E26 | Hybrid switch (TimesFM vs interp-cubic per block) | EXPERIMENT | **SUPERSEDED (see E48)** | median -4. |
+| E27 | vs downsampling at matched file size | EXPERIMENT | **CONFIRMED** | downsampling worst-case error vs guaranteed bound: 28. |
+| E30 | NAB operational, ideal codelength | EXPERIMENT | **RETRACTED** | median +3. |
+| E31 | NAB operational, real bytes | EXPERIMENT | **CONFIRMED** | median +5. |
+| E32 | Electricity grid load | EXPERIMENT | **CONFIRMED** | median +17. |
+| E33 | MTA subway ridership | EXPERIMENT | **CONFIRMED** | median +26. |
+| E34 | Category verdict (combined demand domains) | EXPERIMENT | **CONFIRMED** | median +21. |
+| E40 | Throughput / batching | EXPERIMENT | **CONFIRMED** | 45 (b6,ctx1024,fp32) -> 225 (b256,ctx512,fp32) -> 442 val/s (bf16 autocast). |
+| E41 | Determinism | EXPERIMENT | **CONFIRMED** | repeat OK, reorder OK. |
+| E42 | Working codec, end-to-end | EXPERIMENT | **CONFIRMED** | ROUND TRIP PASS, bit-identical (sha256), all bounds held, 113 val/s. |
+| E52 | Full re-score on one back end (AC) across all corpora | EXPERIMENT | **CONFIRMED** | SDRBench -0. |
+| E43 | ABLATION: context length | ABLATION | **CONFIRMED** | Body accuracy saturates FAST: ctx=256 is only -1. |
+| E44 | ABLATION: heteroscedastic index coding (the 9 quantiles) | ABLATION | **NEGATIVE** | Practical: median -66. |
+| E45 | Paper figures | INFRA | **INFRA** | assets/fig1-4. |
+| E46 | Citation research | INFRA | **CONFIRMED** | Key finding: the TimesFM-3 model card supplies NO separate citation -- its BibTeX still points to Das et al. |
+| E47 | Cross-device bitstream portability | EXPERIMENT | **CONFIRMED** | GPU vs CPU NOT bit-identical: max 3. |
+| E48 | Hybrid predictor, properly (resolves E26) | ABLATION | **NEGATIVE** | LEADER picks TimesFM in 100% of blocks and degenerates exactly to TimesFM alone; BLEND is WORSE (2. |
+| E49 | SDRBench (falsification test of the domain claim) | EXPERIMENT | **CONFIRMED** | PREDICTED LOSS CONFIRMED: median -0. |
+| E50 | Adaptive binary arithmetic coder (replaces xz/zstd back end) | EXPERIMENT | **CONFIRMED** | Beats xz/zstd on real quantization indices by median +9. |
+| E51 | Heteroscedastic contexts with a real coder (settles E44) | ABLATION | **NEGATIVE** | STILL NEGATIVE and worse than idealized: median -13. |
+
+## Detail
+
+### E01 — TimesFM-3.0 architecture audit  `CONFIRMED`
+
+- **config:** read timesfm3/model.py, configs.py, timesfm3_forecaster.py
+- **result:** 9 quantiles (0.1-0.9) only; input_patch=32, output_patch=64, 20 layers, d=1280, max_variates=32, ctx<=15360, non-autoregressive. No density head.
+- **artifact:** `-`
+
+### E02 — Synthetic corpus + controls  `CONFIRMED`
+
+- **config:** 10 series x 20k samples; controls: iid_noise (entropy 12.0), random_walk
+- **result:** controls behave correctly; iid_noise floor reproduced exactly
+- **artifact:** `src/corpus.py, data/synth/`
+
+### E03 — Real corpus: Wikimedia hourly pageviews  `CONFIRMED`
+
+- **config:** en/de wikipedia, hourly aggregate, 22633 pts, 2024-2026
+- **result:** CONTAMINATION RISK: TimesFM pretrained on Wikipedia pageviews (to Nov 2023)
+- **artifact:** `data/real/`
+
+### E04 — Real corpus: NAB operational  `CONFIRMED`
+
+- **config:** 10 series: AWS EC2 CPU/network/disk, RDS, ASG, NYC taxi, temperatures
+- **result:** 8 usable at ctx=512,N=2048
+- **artifact:** `data/nab/`
+
+### E05 — Real corpus: EIA-930 grid load  `CONFIRMED`
+
+- **config:** 50 US balancing authorities, hourly demand, Jan-Jun 2026 (post-cutoff)
+- **result:** 49 usable; SEC excluded as corrupt (3/4343 sentinel values ~-4.3e8)
+- **artifact:** `data/grid/`
+
+### E06 — Real corpus: MTA subway ridership  `CONFIRMED`
+
+- **config:** 50 busiest station complexes, hourly, Jan-Aug 2026, 5735 h (post-cutoff)
+- **result:** 50 usable
+- **artifact:** `data/transit/`
+
+### E07 — Classical baseline suite  `CONFIRMED`
+
+- **config:** xz/zstd/bz2/brotli x {raw,shuffle,delta,delta+shuffle}; ideal order0/delta0/LPC
+- **result:** xz is a weak bar on numeric arrays; LPC+adaptive-Laplace is the real one
+- **artifact:** `src/baselines.py, src/strong_lpc.py`
+
+### E08 — SZ3 built from source + ZFP  `CONFIRMED`
+
+- **config:** SZ3 v-latest cmake build; zfpy 1.0.1
+- **result:** working; SZ3 has ~500 B container overhead (dominates below N~4k)
+- **artifact:** `ext/SZ3, src/sz3_real.py`
+
+### E10 — Lossless viability, stride 64  `CONFIRMED`
+
+- **config:** ctx=1024, stride=64, quantile-CDF entropy model
+- **result:** model far worse than classical; horizon decay dominates (|r| 58.8 -> 9896 h0->h63)
+- **artifact:** `results/viability_c1024_s64.json`
+
+### E11 — Calibration diagnostic  `CONFIRMED`
+
+- **config:** median accuracy vs stated quantile spread, by horizon step
+- **result:** quantiles well-calibrated (ratio 0.85-1.28); the problem is median precision, not miscalibration
+- **artifact:** `-`
+
+### E12 — Lossless viability, stride 1 + recalibration + stacking  `RETRACTED`
+
+- **config:** ctx=1024, stride=1, experts: qcdf/lapA/lapQcal/t3Qcal/lpc32/stack
+- **result:** apparent gains, but confounded by density-family mismatch (see E13)
+- **artifact:** `results/v2_c1024_s1.json`
+
+### E13 — Fairness fix: identical residual coder  `CONFIRMED`
+
+- **config:** adaptive mixture-of-Laplace-scales + uniform escape, same for every predictor
+- **result:** VALIDATION: iid_noise reads 12.003 bpv for every predictor (true entropy 12.0) and +0.00%. Prior +2.15% 'gain' on pure noise was density-family, not skill.
+- **artifact:** `src/fair.py`
+
+### E14 — Lossless verdict  `CONFIRMED`
+
+- **config:** stride 1, ctx 1024, fair coder, 14 series
+- **result:** median +0.03% vs honest classical. DEAD. Cause: log2 law -- 1.51x better forecasting buys 0.60 bits of 19.8 (2.9%).
+- **artifact:** `results/fair_compare.json`
+
+### E15 — Cross-channel via past_future_covariates  `NEGATIVE`
+
+- **config:** en.wikipedia conditioned on de.wikipedia, full trajectory as covariate
+- **result:** NO EFFECT: 19.045 -> 19.054 bpv (MAE 113.6k -> 111.4k)
+- **artifact:** `results/real_crosschannel.json`
+
+### E20 — Error-bounded lossy sweep (closed loop)  `RETRACTED`
+
+- **config:** rho in {0.001,0.01,0.05,0.2} x stride in {1,8,32,64}, vs closed-loop LPC32
+- **result:** large apparent gains (lorenz +71.4% @rho=0.05); gains die at stride>8
+- **artifact:** `results/lossy_parsed.json`
+
+### E21 — Predictor noise-gain measurement  `CONFIRMED`
+
+- **config:** G = std(pred(x+eps)-pred(x))/std(eps), 6 series x 3 noise levels
+- **result:** TimesFM G=0.27-2.12 (NOT contractive). LPC32 G up to 5.44. Model predicts win/loss sign in 15/18 cases incl. the full lorenz reversal.
+- **artifact:** `results/noise_gain.json`
+
+### E22 — SZ3-class predictor family  `CONFIRMED`
+
+- **config:** lorenzo1/2/3, LPC32, interp-linear, interp-cubic; analytic noise gains
+- **result:** SZ3's multilevel interpolation is contractive BY CONSTRUCTION (G=0.707/0.80). The field already exploits this; it is not an unexploited gap.
+- **artifact:** `src/sz_style.py, results/sz_style.json`
+
+### E23 — Head-to-head vs SZ3-class, matched windows  `CONFIRMED`
+
+- **config:** 6 series x 4 rho, ideal codelength, N=2048
+- **result:** median +6.6/+11.1/+18.4/+12.6% at rho .001/.01/.05/.2; loses on lorenz always
+- **artifact:** `results/headtohead.json`
+
+### E24 — TimesFM as interpolator (coarse grid as covariate)  `NEGATIVE`
+
+- **config:** two-level: code every K-th sample, upsample, feed as past_future_covariate; K in {8,16}, stride in {32,64}, rho in {0.01,0.05}
+- **result:** FAILED in every configuration: -0.7% to -210%. Second independent failure of the covariate pathway (with E15).
+- **artifact:** `results/tfm_interp.json`
+
+### E25 — Definitive benchmark, real bytes, N=8192  `CONFIRMED`
+
+- **config:** 6 series x 3 rho, real xz/zstd bytes both sides, vs real SZ3 + ZFP
+- **result:** vs best-of-6 classical: median +4.8%, 12/18. vs real SZ3: +36.3%, 17/18. REAL split: +21.8% (6/6); SYNTHETIC: -3.4% (6/12).
+- **artifact:** `results/final_bench.json`
+
+### E26 — Hybrid switch (TimesFM vs interp-cubic per block)  `SUPERSEDED (see E48)`
+
+- **config:** 512-sample blocks, 1 bit side info, independent xz per block
+- **result:** median -4.0%, but CONFOUNDED: per-block xz fragmentation costs more than switching gains. Beat both singles on lorenz (0.902 vs 1.555/1.418). Needs one adaptive coder with a switch flag to test properly.
+- **artifact:** `results/hybrid_downsample.json`
+
+### E27 — vs downsampling at matched file size  `CONFIRMED`
+
+- **config:** largest R with bitrate <= TimesFM's; compare L-inf error
+- **result:** downsampling worst-case error vs guaranteed bound: 28.0x (grid), 36.7x (NAB), 56.1x (transit)
+- **artifact:** `results/*`
+
+### E30 — NAB operational, ideal codelength  `RETRACTED`
+
+- **config:** 8 series x 3 rho, ctx=512, N=2048
+- **result:** median +3.8%, 20/24 -- reported on the WRONG basis (idealized coder)
+- **artifact:** `results/nab_bench.json`
+
+### E31 — NAB operational, real bytes  `CONFIRMED`
+
+- **config:** same, real xz/zstd bytes
+- **result:** median +5.2%, 16/24. ec2_network_in +15.0% -> -12.9% (the only claimed out-of-corpus win, retracted). ec2_disk_write +2.4% -> -32.2%.
+- **artifact:** `results/nab_realbytes.json`
+
+### E32 — Electricity grid load  `CONFIRMED`
+
+- **config:** 49 BAs x 3 rho, ctx=512, N=2048, real bytes, uncontaminated (2026)
+- **result:** median +17.9%, 146/147. rho=0.01 49/49 (+21.3%), 0.05 49/49 (+14.0%), 0.2 48/49 (+13.9%). Per-BA range +0.5% to +27.3%, ALL positive.
+- **artifact:** `results/grid_bench.json`
+
+### E33 — MTA subway ridership  `CONFIRMED`
+
+- **config:** 50 stations x 3 rho, ctx=512, N=2048, real bytes, uncontaminated (2026)
+- **result:** median +26.0%, 149/150. rho=0.05 and 0.2 both 50/50. Gains GROW with tolerance (+19.0/+26.4/+33.0) where grid's shrank.
+- **artifact:** `results/transit_bench.json`
+
+### E34 — Category verdict (combined demand domains)  `CONFIRMED`
+
+- **config:** grid + transit, 297 series-tolerance pairs, both uncontaminated
+- **result:** median +21.7%, mean +21.2%, wins 295/297. 'Aggregate human-demand series' is a real class. NOTE: body-only, see E42.
+- **artifact:** `-`
+
+### E40 — Throughput / batching  `CONFIRMED`
+
+- **config:** batch x ctx x precision sweep
+- **result:** 45 (b6,ctx1024,fp32) -> 225 (b256,ctx512,fp32) -> 442 val/s (bf16 autocast). Compute-bound, saturates ~b128-256. bf16 perturbs predictions by 51% of model error, so all reported numbers are fp32.
+- **artifact:** `results/throughput.json`
+
+### E41 — Determinism  `CONFIRMED`
+
+- **config:** repeat / batch1-vs-batch8 / reorder / batch8-vs-9; then tf32, sdpa, deterministic-algorithms, MATH backend
+- **result:** repeat OK, reorder OK. Batch SIZE changes numerics (7.8e-3 MW) and NO config fixes it. => group size G must be part of the container format. Snapping to a coarse grid does not help (relocates the boundary).
+- **artifact:** `results/determinism.json, results/determinism2.json`
+
+### E42 — Working codec, end-to-end  `CONFIRMED`
+
+- **config:** G=8 and G=16, n=4300, rho=0.05, encode->bytes->decode->verify
+- **result:** ROUND TRIP PASS, bit-identical (sha256), all bounds held, 113 val/s. End-to-end 2.369 bpv (13.5x). Gain vs classical: +2.9% @6mo, +7.6% @1yr, +12.1% asymptotic -- body-only benchmarks (E32/E33) overstate the deliverable.
+- **artifact:** `src/codec.py`
+
+### E52 — Full re-score on one back end (AC) across all corpora  `CONFIRMED`
+
+- **config:** every corpus, every predictor, single adaptive AC; context ablation re-scored too
+- **result:** SDRBench -0.8% (0/27), Synthetic +2.9% (7/12), NAB +6.4% (21/24), Grid +13.3% (147/147), Transit +28.3% (150/150), demand combined +21.4% (297/297). End-to-end doubles: +6.8% at 6mo, +15.1% asymptotic. Codec round trip PASSES bit-exact at G=16 with the AC (2.111 bpv, 15.2x). Domain gradient stays clean and monotone under the new back end.
+- **artifact:** `results/rescore_all.json, results/e2e_ac.json, results/ablation_ac.json`
+
+### E43 — ABLATION: context length  `CONFIRMED`
+
+- **config:** ctx in {64,128,256,512,1024}, 16 grid BAs x 3 rho, N=2048, identical scored window, real bytes; seed priced with best-of-5 classical at the same tau
+- **result:** Body accuracy saturates FAST: ctx=256 is only -1.6% vs ctx=1024, ctx=512 -0.2%, ctx=64 -9.5%. Seed total bits fall with ctx (549 b at ctx=64 -> 3395 b at 1024). End-to-end optimum: ctx=256 at n=4300 (+3.3%), ctx=512 for n>=8760 (+6.4/+8.3/+9.4% at 1/2/5 yr). ctx=512 was already near-optimal; the win over the default is ~1 point, NOT the large effect I predicted.
+- **artifact:** `src/ablation.py, results/ablation.json`
+
+### E44 — ABLATION: heteroscedastic index coding (the 9 quantiles)  `NEGATIVE`
+
+- **config:** scale from (q90-q10)/(2 ln5), causally calibrated gain; two arms -- practical (8 spread buckets, separate streams) and ideal (one coder conditioned on spread)
+- **result:** Practical: median -66.3%, 0/15 -- stream fragmentation, the same confound as E26. Ideal: median +0.3%, 10/15, and -17 to -21% at rho=0.2. CONCLUSION: the quantile head contributes NOTHING beyond its median in the error-bounded setting; a flat adaptive coder already tracks the scale causally. Call with return_quantiles=False.
+- **artifact:** `src/ablation.py, results/ablation.json`
+
+### E45 — Paper figures  `INFRA`
+
+- **config:** 4 figures: log2 law w/ inset, domain strip plot, rate-distortion vs guaranteed error (grid+transit+SZ3), context ablation. Palette validated with the dataviz validator (all checks PASS, light surface); every series carries a distinct marker AND linestyle so identity survives grayscale print and CVD.
+- **result:** assets/fig1-4.{png,pdf}, generated from results/*.json by scripts/make_figures.py
+- **artifact:** `scripts/make_figures.py`
+
+### E46 — Citation research  `CONFIRMED`
+
+- **config:** verified venues/DOIs for SZ3 interpolation, Chimp, Elf, Sprintz, QoZ, TimesFM-3
+- **result:** Key finding: the TimesFM-3 model card supplies NO separate citation -- its BibTeX still points to Das et al. 2023 (arXiv:2310.10688). Paper states this explicitly rather than inventing a reference. SZ3's interpolation predictor traced to Zhao et al., ICDE 2021, DOI 10.1109/ICDE51399.2021.00145 (the exact predictor reimplemented in our baseline family).
+- **artifact:** `paper bibliography (published separately on arXiv)`
+
+### E47 — Cross-device bitstream portability  `CONFIRMED`
+
+- **config:** identical model+inputs on GPU fp32 vs CPU fp32; fp64 attempted
+- **result:** GPU vs CPU NOT bit-identical: max 3.9e-3 MW, 3/8 series differ. Drift is 7.0e-6 of a quantization step at rho=0.05 => expected ~143,650 samples before the first desync (6-month series usually survives; 5-year archive ~26% chance of corruption; >144k samples effectively certain). fp64 unavailable: the timesfm package pins tensors to fp32. CONSEQUENCE: the container must record the execution device, not just the group size.
+- **artifact:** `src/portability.py, results/portability.json`
+
+### E48 — Hybrid predictor, properly (resolves E26)  `NEGATIVE`
+
+- **config:** 3 closed loops x 16 grid BAs x 3 rho: TimesFM alone, causal inverse-error BLEND, and LEADER (use whoever won the previous 256-sample block). Both hybrids use ZERO side information -- the decoder holds the same reconstructed history so it recomputes the classical prediction and both error histories itself. Single index stream per variant, so no fragmentation.
+- **result:** LEADER picks TimesFM in 100% of blocks and degenerates exactly to TimesFM alone; BLEND is WORSE (2.432 vs 2.221 bpv at rho=0.05) because averaging with a weaker predictor hurts. Net gain +0.0%. E26's -4.0% was pure stream fragmentation. CONCLUSION: nothing to hybridize on the target domain -- the model dominates the causal classical predictor uniformly. LEADER is still worth shipping as free insurance: it costs nothing and degenerates correctly off-domain.
+- **artifact:** `src/hybrid.py, results/hybrid.json`
+
+### E49 — SDRBench (falsification test of the domain claim)  `CONFIRMED`
+
+- **config:** 9 fields x 3 rho: 6 EXAALT molecular-dynamics trajectories + 3 Hurricane ISABEL scanlines; real bytes; 1-D vs 1-D so the comparison is fair between predictors
+- **result:** PREDICTED LOSS CONFIRMED: median -0.8%, wins 3/27. EXAALT (noisy MD trajectories) roughly break-even (-2.1% to +0.5%); Hurricane (smooth field) loses badly (-4.4% to -58.2%), and the loss GROWS with tolerance -- the mirror image of transit. Contrast with demand series (+21.7%, 295/297) makes the domain characterization rigorous rather than anecdotal. Note both Cadence and the classical family beat SZ3 in 1-D mode, reconfirming SZ3 is mis-applied in 1-D.
+- **artifact:** `src/sdrbench.py, results/sdrbench.json`
+
+### E50 — Adaptive binary arithmetic coder (replaces xz/zstd back end)  `CONFIRMED`
+
+- **config:** LZMA-style binary range coder, 11-bit adaptive probabilities; CABAC-like binarization of signed indices (zero flag / sign / truncated-unary magnitude / Exp-Golomb tail) with decoder-derivable contexts. Round-trip validated on laplace/sparse/heavy-tailed/all-zero/uniform.
+- **result:** Beats xz/zstd on real quantization indices by median +9.7%, 15/15, rising to +30% at rho=0.2. All earlier real-byte figures were therefore PESSIMISTIC. Re-scored with the AC on BOTH sides: grid +13.3%, transit +27.7%, wins 297/297 (a perfect sweep; was 295/297).
+- **artifact:** `src/rangecoder.py, src/ac_bench.py, src/rescore_ac.py`
+
+### E51 — Heteroscedastic contexts with a real coder (settles E44)  `NEGATIVE`
+
+- **config:** 8 spread buckets as arithmetic-coder CONTEXTS (not separate streams), so fragmentation is impossible by construction
+- **result:** STILL NEGATIVE and worse than idealized: median -13.8%, 0/15. Cause is not fragmentation but CONTEXT DILUTION -- splitting the adaptive model across 8 contexts slows convergence more than the conditioning gains, and predicted spread adds nothing over the recent-magnitude context already in use. Three independent implementations (ideal +0.3%, bucketed-xz -66%, AC-context -13.8%) now agree the quantile head is worthless for this codec.
+- **artifact:** `results/ac_bench.json`
+
+## Retractions
+
+| id | claim | why it fell | trace |
+|---|---|---|---|
+| R1 | Lorenz +71.4% was the smoking gun | Compared against closed-loop LPC-32 (G=5.44), a strawman. Against SZ3's actual predictor TimesFM LOSES on lorenz at every tolerance. | E20->E23 |
+| R2 | Noise robustness is an unexploited gap | TimesFM is not contractive (G up to 2.12); SZ3's interpolation is (G=0.707/0.80). The field already exploits it. | E21,E22 |
+| R3 | +70% vs real SZ3 | SZ3 has ~500 B container overhead; at N=2048 that IS the file. At N=8192 the gap is +36.3%. | E08->E25 |
+| R4 | Gains grow monotonically with tolerance | True on real data, reverses on synthetic. Overall rho=0.2 median is -18% in real bytes. | E20->E25 |
+| R5 | ec2_network_in +15% was a clean out-of-corpus win | Idealized coder; in real bytes it is -12.9%. Removed the only transfer evidence at the time. | E30->E31 |
+| R8 | Grid and transit trend oppositely in tolerance | Artifact of the xz back end, which compresses the long zero runs of simple predictors very well and so flatters classical at loose tolerance. With a real arithmetic coder BOTH domains grow with tolerance (grid +6.4/+13.3/+21.2), as the theory predicts. | E50 |
+| R7 | Shrinking the context matters far more than any modelling improvement | Measured: worth ~1 point. Body accuracy degrades about as fast as seed cost falls (ctx=64 body -9.5%). ctx=512 was already near-optimal. | E43 |
+| R6 | Projected end-to-end +9.9% at n=4300 | Measured +2.9%. Assumed seed 3.149 bpv (actual 4.008) and body 2.05 (actual 2.126). | E42 |

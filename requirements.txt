@@ -1,0 +1,11 @@
+# Core. Install a CUDA-matched torch first if you need a specific build.
+torch>=2.4
+timesfm>=3.0.0
+numpy>=1.26
+scipy>=1.11
+zstandard>=0.22
+brotli>=1.1
+zfpy>=1.0.1          # ZFP baseline
+matplotlib>=3.8      # figures only
+pandas>=2.0          # data prep only
+huggingface_hub>=0.25
