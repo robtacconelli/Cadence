@@ -1,4 +1,5 @@
-<p align="center"><img alt="image" src="https://github.com/user-attachments/assets/44c773b1-12a5-4452-8324-48f56aecd668" />
+<p align="center">
+  <img width="1024" height="191" alt="image" src="https://github.com/user-attachments/assets/39ed6165-4f2c-4f49-9eb7-bce2febc8f58" />
 </p>
 <p align="center">
   <a href="https://arxiv.org/abs/2609.06008"><img src="https://img.shields.io/badge/arXiv-2609.06008-b31b1b.svg" alt="arXiv"></a>
